@@ -1,7 +1,21 @@
 <?php
 include "autoloader.php";
-//$d= new CreateProduct();
-//$d->createProduct();  
-$wel= new ProductsList();
-$wel->productList();
-    
+$method = $_SERVER["REQUEST_METHOD"];
+switch ($method) {
+    case "GET":
+        $list = new ProductController();
+        $list->productList();
+        break;
+    case "POST":
+        
+        $d = new ProductController();
+        $d->createProduct();
+        break;
+
+    case "DELETE":
+        $d = new ProductDao();
+        $d->deleteProducts();
+        break;
+
+}
+

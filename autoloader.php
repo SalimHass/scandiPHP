@@ -8,7 +8,7 @@ spl_autoload_register(function($className){
         'api',
         'models',
         'config',
-        'classes'
+        'dao'
     );
 
     foreach($array_paths as $path) {
