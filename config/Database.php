@@ -2,20 +2,20 @@
   class Database {
 
     
-    
+    /*
     private $host = 'localhost';
     private $db_name = 'id20083607_scanditest';
     private $username = 'id20083607_salimhass';
     private $password = 'ZO4g/riCWj{3!>*9';
-    
+    */
 
     // DB Params
-    /*
+    
     private $host = 'localhost';
     private $db_name = 'scanditest';
     private $username = 'root';
     private $password = '';
-    */
+    
 
     // DB Connect
     public function connect() {

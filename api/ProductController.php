@@ -10,7 +10,7 @@ header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,
 
 class ProductController
 {
-
+  
   public static function create(){
     echo "create";
   }
