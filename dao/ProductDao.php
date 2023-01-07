@@ -4,7 +4,7 @@ class ProductDao extends Database
 
   public static  $TABLE = 'products';
 
-  public function readAll()
+  public   function readAll()
   {
     // Create query
     $sql = 'SELECT * From ' . ProductDao::$TABLE;
@@ -81,6 +81,10 @@ class ProductDao extends Database
   // Delete
   public function deleteProducts()
   {
+
+
+
+    
     
     
     
@@ -93,11 +97,11 @@ class ProductDao extends Database
    // Delete Products Received 
     if ( $data->delete_ids && $stmt->execute())  {
       echo json_encode(
-        array('message' => 'Post(s) Deleted')
+        array('message' => 'Product(s) Deleted')
       );
     } else {
       echo json_encode(
-        array('message' => 'Post(s) Not Deleted')
+        array('message' => 'Product(s) Not Deleted')
       );
     }
   }

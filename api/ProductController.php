@@ -1,13 +1,21 @@
 <?php
 // Headers
+
 header('Access-Control-Allow-Origin: *');
+
 header('Content-Type: application/json');
-header('Access-Control-Allow-Methods: POST');
+header("Access-Control-Allow-Methods: 'GET, POST, OPTIONS, PUT, PATCH, DELETE'");
+
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
 class ProductController
 {
-  public function productList(){
+
+  public static function create(){
+    echo "create";
+  }
+
+  public static function productList(){
     $dao = new ProductDao();
     $products_arr = $dao->readAll();
      // Get row count
@@ -20,12 +28,14 @@ class ProductController
   } else {
     // No Posts
     echo json_encode(
-      array('message' => 'No Posts Found')
+      array('message' => 'No products Found')
     );
   }
 
+  
+  
+}
 
-  }
 
   public function createProduct()
   {
@@ -42,11 +52,11 @@ class ProductController
     // create Product
     if ($product!=null && $dao->create($product)) {
       echo json_encode(
-        array('message' => 'Post Created')
+        array('message' => 'Product Created')
       );
     } else {
       echo json_encode(
-        array('message' => 'Post Not Created')
+        array('message' => 'Product not Created')
       );
     }
   }
