@@ -3,7 +3,6 @@
 
 abstract class Product implements \JsonSerializable
 {
-
   private $id;
   private $sku;
   private $name;
@@ -136,5 +135,4 @@ abstract class Product implements \JsonSerializable
 
         return $vars;
     }
-
 }

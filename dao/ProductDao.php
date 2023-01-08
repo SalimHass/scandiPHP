@@ -1,7 +1,6 @@
 <?php
 class ProductDao extends Database
 {
-
   public static  $TABLE = 'products';
 
   public   function readAll()
@@ -21,11 +20,11 @@ class ProductDao extends Database
     if ($num > 0) {
 
       $products_arr = array();
-      
+
 
       while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         extract($row);
-        
+
 
         $productdb = array(
           'id' => $id,
@@ -41,14 +40,14 @@ class ProductDao extends Database
 
         );
         $classname = $type . "Product";
-        (class_exists($classname)) ? ($product = $classname::FETCH_BY_DB($productdb)) : null ;
+        (class_exists($classname)) ? ($product = $classname::FETCH_BY_DB($productdb)) : null;
 
 
         // Push to "data"
         array_push($products_arr, $product);
       }
-      
-      
+
+
       return $products_arr;
     }
     return null;
@@ -79,34 +78,31 @@ class ProductDao extends Database
 
 
   // Delete
-  public function deleteProducts()
+  public static function deleteProducts()
   {
 
 
 
-    
-    
-    
-    
+
+
+
+
     $data = json_decode(file_get_contents("php://input"));
     $products_id = implode(",", $data->delete_ids);
-    
-    $sql = "DELETE FROM ". ProductDao::$TABLE ." WHERE id IN($products_id)";
-    $stmt = $this->connect()->prepare($sql);
-    
-   // Delete Products Received 
-    if ( $data->delete_ids && $stmt->execute())  {
+
+    $sql = "DELETE FROM " . ProductDao::$TABLE . " WHERE id IN($products_id)";
+    $db = new Database;
+    $stmt = $db->connect()->prepare($sql);
+
+    // Delete Products Received 
+    if ($data->delete_ids && $stmt->execute()) {
       echo json_encode(
-        array('message' => 'Product(s) Deleted')
+        array('message' => 'Product(s) Deleted', 'success' => true)
       );
     } else {
       echo json_encode(
-        array('message' => 'Product(s) Not Deleted')
+        array('message' => 'Product(s) Not Deleted', 'success' => false)
       );
     }
   }
- 
-    
-
-
-    }
+}

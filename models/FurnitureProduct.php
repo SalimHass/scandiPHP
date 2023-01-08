@@ -1,5 +1,6 @@
 <?php
-class  FurnitureProduct extends Product{
+class  FurnitureProduct extends Product
+{
     private $height;
     private $width;
     private $length;

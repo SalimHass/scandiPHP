@@ -8,23 +8,15 @@ header("Access-Control-Allow-Methods: 'GET, POST, DELETE'");
 
 include "autoloader.php";
 
-$method = $_SERVER["REQUEST_METHOD"];
-switch ($method) {
-    case 'GET':
-        $list = new ProductController();
-        $list->productList();
-        break;
-    case 'POST':
-        
-        $d = new ProductController();
-        $d->createProduct();
-        break;
+//print_r($_SERVER) ;
 
-    case 'DELETE':
-        $d = new ProductDao();
-        $d->deleteProducts();
-        break;
 
-}
+$router = new Router();
+$router->get('/scandiPHP/', 'ProductController::productList');
+$router->create('/scandiPHP/create', 'ProductController::createProduct');
+$router->delete('/scandiPHP/delete', 'ProductDao::deleteProducts');
+
+$router->runRoutes();
+
 
 
