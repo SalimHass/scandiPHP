@@ -11,30 +11,25 @@ class  FurnitureProduct extends Product
         $this->width=$width;
         $this->length=$length;
         $this->setType("Furniture");
-        
-
-        
     }
 
     
 
-    public static function FETCH_BY_DB($productdb) {
+    public static function FETCH_BY_DB($productdb) 
+    {
         $p= new self($productdb['sku'],$productdb['name'],$productdb['price'],$productdb['f_height'],$productdb['f_width'],$productdb['f_length']);
         if ($productdb['id']){
 
             $p-> setId($productdb['id']);
         } 
         return $p;
-
     }
 
 
-    public static function CREATE_FROM_JSON($productdb) {
-        
+    public static function CREATE_FROM_JSON($productdb) 
+    {
         $p= new self($productdb->sku,$productdb->name,$productdb->price,$productdb->f_height,$productdb->f_width,$productdb->f_length);
-       
         return $p;
-    
     }
     
 

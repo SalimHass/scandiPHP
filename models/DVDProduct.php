@@ -4,7 +4,6 @@ class DVDProduct extends Product
   private $dvd_size;
   public function __construct($sku, $name, $price, $dvd_size)
   {
-
     parent::__construct($sku, $name, $price);
     $this->dvd_size = $dvd_size;
     $this->setType("DVD");
@@ -15,16 +14,14 @@ class DVDProduct extends Product
     $p-> setId($productdb['id']);
  
     return $p;
-
 }
 
-  public static function CREATE_FROM_JSON($productdb) {
-        
+  public static function CREATE_FROM_JSON($productdb)
+  {
     $p= new self($productdb->sku,$productdb->name,$productdb->price,$productdb->dvd_size);
-   
     return $p;
 
-}
+  }
 
 
 

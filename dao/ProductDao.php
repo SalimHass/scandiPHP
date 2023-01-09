@@ -24,8 +24,6 @@ class ProductDao extends Database
 
       while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         extract($row);
-
-
         $productdb = array(
           'id' => $id,
           'sku' => $sku,
@@ -46,8 +44,6 @@ class ProductDao extends Database
         // Push to "data"
         array_push($products_arr, $product);
       }
-
-
       return $products_arr;
     }
     return null;
@@ -57,9 +53,6 @@ class ProductDao extends Database
   // Create product
   public function create(Product $product)
   {
-
-
-
     // Bind data
     $stmt = $product->dbBinding($this->connect());
 
@@ -80,13 +73,6 @@ class ProductDao extends Database
   // Delete
   public static function deleteProducts()
   {
-
-
-
-
-
-
-
     $data = json_decode(file_get_contents("php://input"));
     $products_id = implode(",", $data->delete_ids);
 
