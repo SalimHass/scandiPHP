@@ -1,10 +1,12 @@
 <?php
+
+namespace Scandi;
+
 class Router
 {
     private array $handlers;
     private const METHOD_POST = 'POST';
     private const METHOD_GET = 'GET';
-
     private function addHandler($method, $path, $handler)
     {
         $this->handlers['GET' . $path] = [
@@ -34,10 +36,8 @@ class Router
         $requestUri = parse_url($_SERVER['REQUEST_URI']);
         $requestPath = $requestUri['path'];
         $method = $_SERVER['REQUEST_METHOD'];
-
         foreach ($this->handlers as $handler) {
             if ($handler['path'] === $requestPath && $method === $handler['method']) {
-
                 call_user_func($handler['handler']);
             }
         }

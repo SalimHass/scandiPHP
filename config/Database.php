@@ -1,4 +1,9 @@
 <?php
+
+namespace Scandi\Config;
+
+use PDO;
+
 class Database
 {
   /*
@@ -10,21 +15,19 @@ class Database
 
   // DB Params
 
-  private $host = 'localhost';
-  private $db_name = 'scanditest';
-  private $username = 'root';
-  private $password = '';
-
-
-  // DB Connect
-  public function connect()
-  {
-    try {
-      $pdo = new PDO('mysql:host=' . $this->host . ';dbname=' . $this->db_name, $this->username, $this->password);
-      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch (PDOException $e) {
-      echo 'Connection Error: ' . $e->getMessage();
+    private $host = 'localhost';
+    private $db_name = 'scanditest';
+    private $username = 'root';
+    private $password = '';
+// DB Connect
+    public function connect()
+    {
+        try {
+            $pdo = new PDO('mysql:host=' . $this->host . ';dbname=' . $this->db_name, $this->username, $this->password);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (\PDOException $e) {
+            echo 'Connection Error: ' . $e->getMessage();
+        }
+        return $pdo;
     }
-    return $pdo;
-  }
 }

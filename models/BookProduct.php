@@ -1,4 +1,9 @@
 <?php
+
+namespace Scandi\Models;
+
+use Scandi\Dao\{ProductDao};
+
 class BookProduct extends Product
 {
     private $book_weight;
@@ -9,7 +14,7 @@ class BookProduct extends Product
         $this->setType("Book");
     }
 
-    public static function FETCH_BY_DB($productdb)
+    public static function fetchByDb($productdb)
     {
         $p = new self($productdb['sku'], $productdb['name'], $productdb['price'], $productdb['book_weight']);
         $p->setId($productdb['id']);
@@ -17,7 +22,7 @@ class BookProduct extends Product
     }
 
 
-    public static function CREATE_FROM_JSON($productdb)
+    public static function createFromJson($productdb)
     {
         $p = new self($productdb->sku, $productdb->name, $productdb->price, $productdb->book_weight);
         return $p;
@@ -28,7 +33,7 @@ class BookProduct extends Product
     /**
      * Get the value of book_weight
      */
-    public function getBook_weight()
+    public function getBookWeight()
     {
         return $this->book_weight;
     }
@@ -38,20 +43,19 @@ class BookProduct extends Product
      *
      * @return  self
      */
-    public function setBook_weight($book_weight)
+    public function setBookWeight($book_weight)
     {
         $this->book_weight = $book_weight;
-
         return $this;
     }
 
     public function dbBinding($connector)
     {
-        $sql = 'INSERT INTO ' . ProductDao::$TABLE . ' SET  sku = :sku, name = :name, price = :price ,type = :type , book_weight = :book_weight';
+        $sql = 'INSERT INTO ' . ProductDao::$TABLE . ' SET  sku = :sku, name = :name,
+         price = :price ,type = :type , book_weight = :book_weight';
         $stmt = $connector->prepare($sql);
         parent::dbBinding($stmt);
         $stmt->bindParam(':book_weight', $this->book_weight);
-
         return $stmt;
     }
 
